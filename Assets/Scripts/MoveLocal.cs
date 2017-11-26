@@ -22,9 +22,11 @@ public class MoveLocal : MonoBehaviour {
 		Vector3 direction = lookAtTarget - transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime*rotSpeed);
 
-		if(Vector3.Distance(transform.position, lookAtTarget)>accuracy){
-			transform.Translate(direction*speed*Time.deltaTime);
-		}
+		/*root motion authirity to move toward target */
+		
+		//if(Vector3.Distance(transform.position, lookAtTarget)>accuracy){
+		//	transform.Translate(direction*speed*Time.deltaTime);
+		//}
 
 		//transform.LookAt(lookAtTarget);
 	}
