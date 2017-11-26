@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowGoal : MonoBehaviour {
 
-	public Transform target;
+	public Transform target; /*consider this the eye of this NPC tank/car */
 	public float speed = 1f;
 	public float accuracy = 1f;
 	public float rotSpeed = 1f;
