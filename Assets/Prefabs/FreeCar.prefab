@@ -395,7 +395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4067461008781342}
   - component: {fileID: 33058336892502842}
-  - component: {fileID: 65468335307654094}
   - component: {fileID: 23356740681095808}
   m_Layer: 0
   m_Name: Cube
@@ -411,7 +410,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386532746764568}
   m_LocalRotation: {x: -0.000000021837344, y: 0.040973157, z: -8.9549695e-10, w: 0.9991603}
-  m_LocalPosition: {x: -0.090000026, y: -0.21, z: 2.950001}
+  m_LocalPosition: {x: -0.07, y: -0.09, z: 3.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -458,18 +457,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386532746764568}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65468335307654094
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1386532746764568}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114108238194067432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -482,10 +469,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circuit: {fileID: 0}
-  lookAheadForTargetOffset: 5
+  lookAheadForTargetOffset: 4
   lookAheadForTargetFactor: 0.1
-  lookAheadForSpeedOffset: 10
-  lookAheadForSpeedFactor: 0.2
+  lookAheadForSpeedOffset: 20
+  lookAheadForSpeedFactor: 0.5
   progressStyle: 0
   pointToPointThreshold: 4
   target: {fileID: 4067461008781342}
@@ -500,3 +487,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ad7cc0e967ada45a61c7dbe33e9724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goal: {fileID: 4067461008781342}
+  rotSpeed: 20
+  accleration: 5
+  deaccleration: 10
+  breakeAngle: 25
+  minSpeed: 0
+  maxSpeed: 50
+  speed: 0
+  speedText: {fileID: 0}
