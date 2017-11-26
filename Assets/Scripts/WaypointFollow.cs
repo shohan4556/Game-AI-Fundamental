@@ -10,7 +10,7 @@ public class WaypointFollow : MonoBehaviour {
 	//public GameObject[] waypoints;
 	private int currentWaypointID = 0;
 	public float moveSpeed = 1f;
-	public float rotSpeed = 1f;
+	public float rotSpeed = 1f; /*need to increase rotation speed based on moveSpeed */
 	public float reachDist = 1f;
 
 	// Use this for initialization

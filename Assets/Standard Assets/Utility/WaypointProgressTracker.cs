@@ -133,7 +133,9 @@ namespace UnityStandardAssets.Utility
                     progressDistance += progressDelta.magnitude;
                 }
                 lastPosition = transform.position;
+
             }
+           // Debug.Log(progressPoint);
         }
 
 
