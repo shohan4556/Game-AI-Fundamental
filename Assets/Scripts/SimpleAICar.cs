@@ -29,7 +29,7 @@ public class SimpleAICar : MonoBehaviour {
 		Vector3 direction = lookAtTarget - transform.position;
 		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime*rotSpeed);
 
-		if(Vector3.Angle(goal.forward,transform.forward) > breakeAngle){
+		if(Vector3.Angle(goal.forward,transform.forward) > breakeAngle && speed > 10f){
 			speed = Mathf.Clamp(speed - (deaccleration*Time.deltaTime), minSpeed, maxSpeed);
 			
 			Debug.Log("deaccleration - Angle : "+Vector3.Angle(goal.forward, transform.forward));
