@@ -22,13 +22,13 @@ public class WaypointDebug : MonoBehaviour {
 
 	void OnDestroy()
 	{
-		RenameWPs(this.gameObject);
+		//RenameWPs(this.gameObject);
 	}
 
 	// Use this for initialization
 	void Start () {
 		if(this.transform.parent.gameObject.name != "WayPoint") return;
-		RenameWPs(null);
+		//RenameWPs(null);
 	}
 	
 	// Update is called once per frame
