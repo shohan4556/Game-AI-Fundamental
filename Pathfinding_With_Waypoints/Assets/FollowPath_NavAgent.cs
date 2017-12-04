@@ -41,7 +41,7 @@ public class FollowPath_NavAgent : MonoBehaviour {
 		}
 
 		if(agent.remainingDistance <= 0.1){
-			print("Path Completed");
+			//print("Path Completed");
 			canSetDest = true;
 		}
 		print(dest + "remaining distance : "+agent.remainingDistance);
@@ -54,7 +54,7 @@ public class FollowPath_NavAgent : MonoBehaviour {
 	{
 		if(dest!=null){
 			Debug.DrawLine(Camera.main.transform.position, dest, Color.black);
-			Debug.Log("draw ray pos : "+dest);
+		 	//Debug.Log("draw ray pos : "+dest);
 		}
 	}
 
