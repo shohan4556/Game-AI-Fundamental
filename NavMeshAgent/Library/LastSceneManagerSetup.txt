@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Different Size of Agent.unity
+- path: Assets/City Crowd Simulation.unity
   isLoaded: 1
   isActive: 1
