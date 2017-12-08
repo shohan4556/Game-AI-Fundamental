@@ -61,6 +61,8 @@ public class CrowdControl : MonoBehaviour {
             }
             // path is not invalid then flee mother fucker 
             if(path.status != NavMeshPathStatus.PathInvalid) {
+                //Debug.Log (path.corners[0]);
+
                 agent.SetDestination (path.corners[path.corners.Length - 1]);
                 agent.speed = 20f;
                 agent.angularSpeed = 500f;
