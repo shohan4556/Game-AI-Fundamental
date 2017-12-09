@@ -28,6 +28,13 @@ public class FlockManager : MonoBehaviour {
     public GameObject[] AllFishes;
     public Vector3 swimLimits = new Vector3 (5, 5, 5);
 
+    public float radius = 1f;
+    public float maxDist = 0.5f;
+    public LayerMask layermask;
+
+    [HideInInspector]
+    public Vector3 goalPos;
+
     [Space(15)]
 
     [Header ("Fish Setting")]
@@ -40,13 +47,14 @@ public class FlockManager : MonoBehaviour {
     [Range (1f, 20f)]
     public float neighbourDistance;
 
-    [Range (0.1f, 20f)]
+    [Range (0.1f, 10f)]
     public float rotationSpeed;
 
 	// Use this for initialization
 	void Start () {
         AllFishes = new GameObject [numOfFish];
         GameObject fishParent = new GameObject ("All Fishes");
+        goalPos = this.transform.position;
 
         for(int i = 0; i < numOfFish; i++) {
             var randX = Random.Range (-swimLimits.x, swimLimits.x);
@@ -64,6 +72,14 @@ public class FlockManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Random.Range (0, 100) < 10) {
+            var randX = Random.Range (-swimLimits.x, swimLimits.x);
+            var randY = Random.Range (-swimLimits.y, swimLimits.y);
+            var randZ = Random.Range (-swimLimits.z, swimLimits.z);
+
+            var pos = transform.position + new Vector3 (randX, randY, randZ);
+            goalPos = pos;
+        }
+       
 	}
 }
