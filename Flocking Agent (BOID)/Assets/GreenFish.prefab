@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flockManager: {fileID: 0}
+  speed: 0
 --- !u!137 &137943918514059332
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

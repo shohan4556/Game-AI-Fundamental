@@ -287,9 +287,11 @@ MonoBehaviour:
   fishPrefab: {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 2}
   numOfFish: 30
   AllFishes: []
-  swimLimits: {x: 5, y: 5, z: 5}
-  minSpeed: 0.27
-  maxSpeed: 3
+  swimLimits: {x: 2, y: 3, z: 3}
+  minSpeed: 0.72
+  maxSpeed: 2.3
+  neighbourDistance: 5
+  rotationSpeed: 2
 --- !u!4 &1289488172
 Transform:
   m_ObjectHideFlags: 0
