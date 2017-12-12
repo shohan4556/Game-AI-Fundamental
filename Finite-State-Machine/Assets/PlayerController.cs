@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
         float Hor = Input.GetAxisRaw ("Horizontal");
         float Vert = Input.GetAxisRaw ("Vertical");
 
-        Vector3 input = new Vector3 (-Hor * speed, 0, -Vert * speed);
+        Vector3 input = new Vector3 (Vert * speed, 0, -Hor * speed);
         transform.Translate (input * Time.deltaTime);
 
 

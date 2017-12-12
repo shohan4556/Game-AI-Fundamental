@@ -7,15 +7,24 @@ public class Chase : NPCBaseFSM {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter ( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter (animator, stateInfo, layerIndex);
+
+        // need to play with navmehs agent speed, accleration, and stopping distance values 
+        agent.speed = 8f;
+        agent.stoppingDistance = 10f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate ( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
-        // setting up chase 
-        Vector3 direction = oppnent.transform.position - NPC.transform.position;
-        NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * rotSpeed);
+        // set the destination to the player position
+        agent.SetDestination (oppnent.transform.position);
 
-        NPC.transform.Translate (0, 0, Time.deltaTime * speed);
+        // setting up chase 
+        // rotate towards to target 
+
+        //Vector3 direction = oppnent.transform.position - NPC.transform.position;
+        //NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * rotSpeed);
+
+        //NPC.transform.Translate (0, 0, Time.deltaTime * speed);
 
     }
 

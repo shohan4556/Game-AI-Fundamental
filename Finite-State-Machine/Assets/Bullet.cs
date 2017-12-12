@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void OnTriggerExit(Collider col ) {
+        if(col.tag == "Player") {
+            Destroy (this.gameObject);
+            return;
+        }
         Destroy (this.gameObject,2f);
     }
 }

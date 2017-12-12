@@ -14,6 +14,10 @@ public class Patrol : NPCBaseFSM {
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         base.OnStateEnter (animator, stateInfo, layerIndex);
+
+        agent.speed = 3f;
+        agent.stoppingDistance = 2f;
+
        currentWaypoint = 0;
 	}
 
@@ -22,6 +26,7 @@ public class Patrol : NPCBaseFSM {
         if (waypoints.Length == 0)
             return;
 
+        //Debug.Log (Vector3.Distance (NPC.transform.position, waypoints[currentWaypoint].transform.position));
         // make sure the npc loop through all the waypoints 
         if(Vector3.Distance(NPC.transform.position, waypoints[currentWaypoint].transform.position) < accuracy) {
             currentWaypoint++;
@@ -30,17 +35,22 @@ public class Patrol : NPCBaseFSM {
             }
         }
 
+        // navmesh agent 
+        agent.SetDestination (waypoints[currentWaypoint].transform.position);
+
         // rotate toward target 
-        Vector3 dir = waypoints[currentWaypoint].transform.position - NPC.transform.position;
-        
-        NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (dir), Time.deltaTime * rotSpeed);
-        dir.y = NPC.transform.position.y;
-        
-        // move towards 
-        // only forward axis
-        NPC.transform.Translate (0, 0, Time.deltaTime * speed);
+
+        /*agent without navmesh agent*/
+        //Vector3 dir = waypoints[currentWaypoint].transform.position - NPC.transform.position;
+
+        //NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (dir), Time.deltaTime * rotSpeed);
+        //dir.y = NPC.transform.position.y;
+
+        //// move towards 
+        //// only forward axis
+       // NPC.transform.Translate (0, 0, Time.deltaTime * speed);
         Debug.Log (currentWaypoint);
-	}
+    }
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
