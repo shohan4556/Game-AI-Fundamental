@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Panda;
 
 public class MyAI : MonoBehaviour {
 
@@ -44,6 +45,28 @@ public class MyAI : MonoBehaviour {
     void OnCollisionEnter(Collision col ) {
         if(col.gameObject.tag == "bullet") {
             health -= 10;
+        }
+    }
+
+    /*---------------------Panda BT--------------------------*/
+    [Task]
+    public void PickRandomDestination ( ) {
+        Vector3 dest = new Vector3 (Random.Range (-100, 100), 0, Random.Range (-100, 100));
+        agent.SetDestination (dest);
+        // make sure the task is succeed
+        Task.current.Succeed ();
+
+    }
+
+    [Task]
+    public void MoveToRandomDestination ( ) {
+        //debug task 
+        if (Task.isInspected) {
+            Task.current.debugInfo = string.Format ("t={0:0.00}", Time.time);
+        }
+
+        if(agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending) {
+            Task.current.Succeed ();
         }
     }
 
