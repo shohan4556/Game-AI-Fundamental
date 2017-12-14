@@ -9,6 +9,8 @@ public class Attack : NPCBaseFSM {
         base.OnStateEnter (animator, stateInfo, layerIndex);
 
         //start attack
+        agent.ResetPath ();
+
         NPC.GetComponent<EnemyAI> ().StartFiring ();
 
     }
