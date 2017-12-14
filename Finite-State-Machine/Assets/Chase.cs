@@ -9,22 +9,24 @@ public class Chase : NPCBaseFSM {
         base.OnStateEnter (animator, stateInfo, layerIndex);
 
         // need to play with navmehs agent speed, accleration, and stopping distance values 
-        agent.speed = 8f;
-        agent.stoppingDistance = 10f;
+        //agent.speed = 8f;
+        //agent.stoppingDistance = 5f;
+        speed = 8;
+        rotSpeed = 2.5f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate ( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         // set the destination to the player position
-        agent.SetDestination (oppnent.transform.position);
+        //agent.SetDestination (oppnent.transform.position);
 
         // setting up chase 
         // rotate towards to target 
 
-        //Vector3 direction = oppnent.transform.position - NPC.transform.position;
-        //NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * rotSpeed);
+        Vector3 direction = oppnent.transform.position - NPC.transform.position;
+        NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * rotSpeed);
 
-        //NPC.transform.Translate (0, 0, Time.deltaTime * speed);
+        NPC.transform.Translate (0, 0, Time.deltaTime * speed);
 
     }
 

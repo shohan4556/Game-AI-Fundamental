@@ -9,7 +9,7 @@ public class NPCBaseFSM : StateMachineBehaviour {
     public GameObject oppnent; // player
 
     public float speed = 4f;
-    public float rotSpeed = 1f;
+    public float rotSpeed = 1.5f;
     public float accuracy = 3f;
     public NavMeshAgent agent;
 
