@@ -44,12 +44,7 @@ MonoBehaviour:
   rotSpeed: 1
   accuracy: 3
   agent: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
 --- !u!114 &114635983512290118
 MonoBehaviour:
   m_ObjectHideFlags: 1
