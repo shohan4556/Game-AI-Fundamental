@@ -50,6 +50,16 @@ public class MyAI : MonoBehaviour {
 
     /*---------------------Panda BT--------------------------*/
     [Task]
+    public void PickDestination(float x, float z ) {
+        Vector3 dest = new Vector3 (x, 0, z);
+        agent.SetDestination (dest);
+
+        Task.current.Fail ();
+        //Task.current.Succeed (); /*This is not a return type you can call from anywhere in the code*/
+    }
+
+
+    [Task]
     public void PickRandomDestination ( ) {
         Vector3 dest = new Vector3 (Random.Range (-100, 100), 0, Random.Range (-100, 100));
         agent.SetDestination (dest);
@@ -59,7 +69,7 @@ public class MyAI : MonoBehaviour {
     }
 
     [Task]
-    public void MoveToRandomDestination ( ) {
+    public void MoveToDestination ( ) {
         //debug task 
         if (Task.isInspected) {
             Task.current.debugInfo = string.Format ("t={0:0.00}", Time.time);
@@ -69,6 +79,62 @@ public class MyAI : MonoBehaviour {
             Task.current.Succeed ();
         }
     }
+
+    /*--------------------Attack BT---------------------------------*/
+    [Task]
+    public void TargetPlayer ( ) {
+        target = player.transform.position;
+        Task.current.Succeed ();
+    }
+
+
+    [Task]
+    public void LookAtTarget ( ) {
+        Vector3 dir = target - this.transform.position;
+        transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (dir), Time.deltaTime * rotSpeed);
+
+        //Debug.Log (Vector3.Angle (transform.forward, dir));
+
+        if (Task.isInspected) {
+            if(Vector3.Angle(transform.forward, dir) < 5f) {
+                Task.current.Succeed ();
+            }
+        }
+    } // end 
+
+
+    [Task]
+    public bool Fire ( ) {
+        GameObject bullet = Instantiate (bulletPrefab, bulletSpawnPos.position, bulletSpawnPos.rotation);
+        bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * 1000);
+        return true;
+    }
+
+    [Task]
+    bool SeenPlayer ( ) {
+        Vector3 dir = player.transform.position - this.transform.position;
+        RaycastHit hitinfo;
+        bool seeWall = false;
+
+        Debug.DrawRay (transform.position, dir, Color.red);
+
+        if(Physics.Raycast(transform.position, dir, out hitinfo)) {
+            if(hitinfo.collider.gameObject.tag == "wall") {
+                seeWall = true;
+            }
+        }
+
+        if (Task.isInspected) {
+            Task.current.debugInfo = string.Format ("wall= {0} ", seeWall);
+        }
+
+        if(dir.magnitude < visibleRange && !seeWall) {
+            return true;
+        }
+
+        return false;
+    }
+
 
 
 }

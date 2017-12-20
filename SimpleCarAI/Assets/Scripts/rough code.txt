@@ -1,0 +1,29 @@
+   // green follow the path
+        if (trafficLight == TLights.green && car.carState == TrafficState.NotCrossedLight) {
+            //  Debug.Log ("green+nocrossed");
+            if (!carsensor.eyeForward ()) {
+                FollowWaypoint ();
+            } else if(carsensor.eyeForward()) {
+                // do not collider and maintain a distance
+                MaintainDist ();
+                //Debug.Log ("a car found infront of mine");
+            }
+
+        } else if (trafficLight == TLights.red && car.carState == TrafficState.NotCrossedLight) {
+            // stop at traffic light mark when car there are no car infront of it 
+            if (!carsensor.eyeForward ()) {
+                StopAtTrafficMark ();
+            } 
+            
+            if(carsensor.eyeForward()) {
+                MaintainDist ();
+            }
+
+        } else if(trafficLight == TLights.red || trafficLight == TLights.green && car.carState == TrafficState.CrossedLight) {
+            // follow wp
+            FollowWaypoint (); 
+            Debug.Log ("crossed + red");
+        } else {
+            // traffic light is green corss or not cross mark
+            Debug.Log ("else portion");
+        }

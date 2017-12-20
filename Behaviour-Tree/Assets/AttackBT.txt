@@ -1,0 +1,9 @@
+tree("Root")
+	sequence 
+		SeenPlayer
+		TargetPlayer
+		LookAtTarget
+		Wait 1.0
+		Fire
+
+
