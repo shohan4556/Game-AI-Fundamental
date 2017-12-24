@@ -1,0 +1,9 @@
+tree("Root")
+	sequence
+		random(4,2,1,1)
+			Turn(90.0)
+			Turn(-90.0)
+			Turn(145.0)
+			Turn(-270.0)
+		LookAtTarget
+		Wait 2.0	

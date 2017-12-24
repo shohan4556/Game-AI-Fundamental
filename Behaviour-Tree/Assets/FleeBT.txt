@@ -1,0 +1,8 @@
+tree("Root")
+	while isHealthLessThan(40.0)
+		while InDange(50.0)
+			sequence
+				RunAwayFromPlayer
+				MoveToDestination
+				outSideScript
+

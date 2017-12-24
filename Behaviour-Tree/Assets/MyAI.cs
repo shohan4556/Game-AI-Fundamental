@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using Panda;
 
 public class MyAI : MonoBehaviour {
-
+    
     public Transform player;
     public Transform bulletSpawnPos;
     public Slider healthbar;
@@ -16,8 +16,8 @@ public class MyAI : MonoBehaviour {
     public Vector3 destination;
     public Vector3 target;
 
-    float health = 100f;
-    float rotSpeed = 5f;
+    public float health = 100f;
+    public float rotSpeed = 5f;
 
     public float visibleRange = 80f;
     public float shootRange = 40f;
@@ -58,7 +58,7 @@ public class MyAI : MonoBehaviour {
         //Task.current.Succeed (); /*This is not a return type you can call from anywhere in the code*/
     }
 
-
+    
     [Task]
     public void PickRandomDestination ( ) {
         Vector3 dest = new Vector3 (Random.Range (-100, 100), 0, Random.Range (-100, 100));
@@ -135,6 +135,48 @@ public class MyAI : MonoBehaviour {
         return false;
     }
 
+    /*------------------------------------------------------------*/
+    [Task]
+    bool Turn(float angle){
+        Vector3 pos = transform.position - Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
+        target = pos;
+        return true;
+    }
 
+    [Task]
+    public bool isHealthLessThan(float h){
+        if(this.health < h ){
+            return true;
+        }
+        return false;
+    }
+        
+    /*if the player is very close to the enemy then its in danger */
+    [Task]
+    public bool InDange(float minDist){
+        Vector3 distance = player.transform.position - this.transform.position;
+        
+        if(distance.magnitude < minDist)
+            return true;
+
+        return false;
+    }
+
+    [Task]
+    public void RunAwayFromPlayer(){
+        Vector3 runDir = transform.position - player.transform.position;
+        Vector3 dest = transform.position +runDir * 2f;
+        agent.SetDestination(dest);
+
+        Task.current.Succeed();
+    }
+
+    /* destroy when life goes down*/
+    [Task]
+    bool Explode(){
+        Destroy(healthbar.gameObject);
+        Destroy(this.gameObject);
+        return true;
+    }
 
 }
