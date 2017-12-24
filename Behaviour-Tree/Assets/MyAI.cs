@@ -179,4 +179,20 @@ public class MyAI : MonoBehaviour {
         return true;
     }
 
+    [Task]
+    public bool ShotLinedUp(){
+        Vector3 dist = target - transform.position;
+        if(dist.magnitude < shootRange && Vector3.Angle(transform.forward, dist) < 1f){
+            return true;           
+        }
+        return false;
+    }
+
+    [Task]
+    void SetTargetDestination(){
+        agent.SetDestination(target);
+        
+        Task.current.Succeed();
+    }
+
 }
